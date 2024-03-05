@@ -4,24 +4,38 @@ import "fmt"
 
 func main() {
 
-	var revenue float64
-	var expenses float64
-	var taxRate float64
+	// var revenue float64
+	// var expenses float64
+	// var taxRate float64
 
-	fmt.Print("Revenue: ")
-	fmt.Scan(&revenue)
+	revenue := getUserInput("Revenue: ")
+	expenses := getUserInput("Expenses: ")
+	taxRate := getUserInput("Tax Rate: ")
 
-	fmt.Print("Expenses: ")
-	fmt.Scan(&expenses)
+	// fmt.Print("Tax Rate: ")
+	// fmt.Scan(&taxRate)
 
-	fmt.Print("Tax Rate: ")
-	fmt.Scan(&taxRate)
+	ebt, profit, ratio := calculateFanancials(revenue, expenses, taxRate)
 
+	// ebt := revenue - expenses
+	// profit := ebt * (1 - taxRate/100)
+	// ratio := ebt / profit
+
+	fmt.Printf("ebt: %.1f\n", ebt)
+	fmt.Printf("profile: %.1f\n", profit)
+	fmt.Printf("ratio: %.3f\n", ratio)
+}
+
+func getUserInput(infoText string) float64 {
+	var userInput float64
+	fmt.Print(infoText)
+	fmt.Scan(&userInput)
+	return userInput
+}
+
+func calculateFanancials(revenue, expenses, taxRate float64) (float64, float64, float64) {
 	ebt := revenue - expenses
 	profit := ebt * (1 - taxRate/100)
 	ratio := ebt / profit
-
-	fmt.Println("ebt:", ebt)
-	fmt.Println("profit:", profit)
-	fmt.Println("radio:", ratio)
+	return ebt, profit, ratio
 }
